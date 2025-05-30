@@ -34,7 +34,6 @@ def extract_to_fields(df):
         "state",
         "zip",
         "ship to country",
-        "customer phone number"
     ]
 
     missing = [col for col in required if col not in df.columns]
@@ -49,7 +48,6 @@ def extract_to_fields(df):
         'ToState':   df['state'],
         'ToZip':     df['zip'],
         'ToCountry': df['ship to country'],
-        'ToPhone':   df['customer phone number'],
     })
 
 def clean_and_validate(parsed):
@@ -73,7 +71,7 @@ def merge_from_data(parsed, from_data):
     final_columns = [
         'FromCountry', 'FromName', 'FromCompany', 'FromPhone',
         'FromStreet1', 'FromStreet2', 'FromCity', 'FromZip', 'FromState',
-        'ToCountry', 'ToName', 'ToCompany', 'ToPhone',
+        'ToCountry', 'ToName', 'ToCompany',
         'ToStreet1', 'ToStreet2', 'ToCity', 'ToZip', 'ToState',
         'Length', 'Height', 'Width', 'Weight'
     ]
@@ -87,8 +85,7 @@ def merge_from_data(parsed, from_data):
     final_df['ToState'] = parsed['ToState']
     final_df['ToZip'] = parsed['ToZip']
     final_df['ToCountry'] = parsed['ToCountry']
-    final_df['ToPhone'] = parsed['ToPhone']
-    final_df['ToCompany'] = ""  # leave empty for manual fill
+    final_df['ToCompany'] = ""  
 
     # Fill From* fields
     for key, value in from_data.items():
